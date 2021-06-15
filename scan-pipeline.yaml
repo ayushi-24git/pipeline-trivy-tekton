@@ -1,0 +1,35 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: scan-pipeline
+spec:
+
+  params:
+  - name: use-case
+  - name: image-scan
+  - name: repo-scan
+
+  tasks:
+      
+  - name: scan
+    
+    taskRef:
+      name: scan
+    
+    params:
+
+      - name: use-case
+        value: $(params.use-case)
+
+      - name: image-scan
+        value: $(params.image-scan)
+
+      - name: repo-scan
+        value: $(params.repo-scan)
+    
+
+
+  
+  
+   
+      

@@ -1,0 +1,54 @@
+apiVersion: tekton.dev/v1beta1
+
+kind: Task
+
+metadata:
+  name: scan
+
+spec:
+  description: This task is for image scanning.
+
+  
+
+  params:
+    
+    - name: use-case
+      type: string
+      description: Input deciding the type of artifact to be scanned.
+      default: ""
+
+    - name: image-scan
+      type: string
+      description: Image to be scanned.
+      default: ""
+
+    - name: repo-scan
+      type: string
+      description: Repo to be scanned.
+      default: ""
+
+  steps:
+    - name: scan-step
+      image: aquasec/trivy:0.16.0
+      
+      script:  |
+        echo "Enter I for image scanning and R for repo scanning."
+        if [ $(params.use-case) == I || $(params.use-case) == i]; then
+          echo "You chose image scanning. Enter image."
+          $(params.repo-scan)==""
+          trivy image $(params.image-scan)
+          
+
+        else 
+
+        if [ $(params.use-case) == R || $(params.use-case) == r]; then
+          echo "You chose repository scanning. Enter repo."
+          $(params.image-scan)==""
+          trivy repo $(params.repo-scan)
+
+        else
+
+        echo "Invalid choice."
+        
+        
+    

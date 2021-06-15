@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: scan-pipelinerun
+spec:
+  pipelineRef:
+    name: scan-pipeline
+
+  params:
+  
+  - name: use-case
+    value: ""
+
+  - name: image-scan
+    value: "" 
+
+  - name: repo-scan
+    value: ""  
+  
