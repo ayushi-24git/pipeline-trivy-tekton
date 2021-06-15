@@ -29,12 +29,12 @@ kubectl apply -f https://raw.githubusercontent.com/ayushi-24git/pipeline-trivy-t
 
 kubectl apply -f https://raw.githubusercontent.com/ayushi-24git/pipeline-trivy-tekton/scan-pipelinerun.yaml
 
-Now, start the pipeline by: tkn pipeline start scan-pipeline
+Now, start the pipeline by: `tkn pipeline start scan-pipeline`
 
 
 Check logs
 Now, the pipeline has successfully started. You can check the logs using the following command:
 
-tkn pipelinerun logs <name-of-the-pipelinerun>
+`tkn pipelinerun logs <name-of-the-pipelinerun>`
 
   
