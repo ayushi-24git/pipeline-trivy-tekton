@@ -6,30 +6,45 @@ spec:
 
   params:
   - name: use-case
+    type: string
+    default: ""
+
   - name: image-scan
+    type: string
+    default: ""
+
   - name: repo-scan
+    type: string
+    default: ""
 
   tasks:
-      
+
   - name: scan
-    
     taskRef:
       name: scan
-    
     params:
-
       - name: use-case
         value: $(params.use-case)
 
-      - name: image-scan
-        value: $(params.image-scan)
-
+  - name: scan-repo
+    when: 
+      - input: "$(params.use-case)"
+        operator: in
+        values: ["R","r"]
+    taskRef:
+      name: scan-repo
+    params:
       - name: repo-scan
         value: $(params.repo-scan)
-    
 
-
-  
-  
+  - name: scan-image
+    when: 
+      - input: "$(params.use-case)"
+        operator: in
+        values: ["I","i"]
+    taskRef:
+      name: scan-image
+    params:
+      - name: image-scan
+        value: $(params.image-scan)
    
-      
